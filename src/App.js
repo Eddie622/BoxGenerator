@@ -1,24 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [color, setColor] = useState("");
+  const [boxes, setBoxes] = useState([]);
+
+  const generateBox = (e) => {
+    e.preventDefault();
+    setBoxes([...boxes, color]);
+    console.log(color);
+    console.log(boxes);
+    setColor("");
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={ generateBox }>
+        <div>Enter Your Color:</div>
+        <input type="text" onChange={ e => setColor(e.target.value) } value={color}></input>
+        <input type="submit" value="Create Box" style={{display: "block", margin: "auto"}}></input>
+        { boxes.map(boxValue => 
+            <div style={{display: "inline-block", margin: "5px", height: "50px", width: "50px", backgroundColor: boxValue}}></div>
+        )}
+      </form>
     </div>
   );
 }
