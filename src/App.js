@@ -9,8 +9,6 @@ function App() {
   const generateBox = (e) => {
     e.preventDefault();
     setBoxes([...boxes, color]);
-    console.log(color);
-    console.log(boxes);
     setColor("");
   }
 
